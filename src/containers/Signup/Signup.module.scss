@@ -1,0 +1,65 @@
+.pageWrapper {
+  height: 100vh;
+  overflow-x: hidden;
+
+  .heading {
+    margin: 0px;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .description {
+    margin: 0px;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .signupPageWrapper {
+    height: 100%;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    .formWrapper {
+      flex: 3;
+      display: flex;
+      padding: 16px 24px;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+
+      .description {
+        margin-bottom: 48px;
+      }
+
+      .form {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+      }
+    }
+
+    .illustrationWrapper {
+      flex: 7;
+      display: flex;
+      padding-top: 24px;
+      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      background-color: rgb(228, 228, 228);
+
+      img {
+        width: auto;
+        height: 540px;
+        margin-bottom: 40px;
+      }
+
+      @media only screen and (max-width: 600px) {
+        display: none;
+      }
+    }
+  }
+}

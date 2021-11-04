@@ -1,0 +1,26 @@
+.wrapper {
+  flex-grow: 1;
+
+  .appBar,
+  .toolBar {
+    background: white;
+    box-shadow: none;
+  }
+
+  .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .introContent {
+      display: flex;
+    }
+
+    .sideContent {
+      .loginButton {
+        margin-right: 24px;
+      }
+    }
+  }
+}

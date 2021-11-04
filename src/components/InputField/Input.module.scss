@@ -1,0 +1,23 @@
+.inputWrapper {
+  width: 100%;
+  margin-bottom: 24px;
+
+  .label {
+    margin: 0px;
+    color: #2b2b2b;
+    margin-left: 2px;
+    margin-bottom: 4px;
+  }
+
+  .inputField {
+    border: none;
+    outline: none;
+    font-size: 18px;
+    color: #2b2b2b;
+    padding: 16px 8px;
+    font-family: Inter;
+    border-radius: 4px;
+    width: calc(100% - 16px);
+    background-color: rgb(228, 228, 228);
+  }
+}

@@ -1,0 +1,39 @@
+.bannerGridContainer {
+  padding-top: 64px;
+}
+
+.tagLine {
+  margin: 0px;
+  font-size: 56px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.tagLineDescription {
+  margin: 0px;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 48px;
+}
+
+.getStartedButton {
+  font-size: 18px;
+  padding: 12px 32px;
+
+  @media only screen and (max-width: 960px) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.imageWrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .illustration {
+    width: 400px;
+    height: auto;
+  }
+}
