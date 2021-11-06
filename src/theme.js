@@ -1,28 +1,26 @@
 import { createTheme } from '@material-ui/core/styles';
 
-import { green } from '@material-ui/core/colors';
-
 const SharedButtonStyles = {
   fontWeight: 400,
   boxShadow: 'none',
-  paddingTop: '8px',
   fontFamily: 'Inter',
-  borderRadius: '10px',
+  borderRadius: '4px',
   textTransform: 'none',
-  paddingBottom: '8px',
 };
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#126E82',
-      light: '#51C4D3',
+      main: '#001D4A',
+      light: '#27476E',
     },
-
     secondary: {
-      main: green[500],
-      light: green[400],
-      dark: green[600],
+      main: '#ECA400',
+      light: '#FFB60A',
+      dark: '#E09D00',
+    },
+    white: {
+      main: '#EAF8BF',
     },
   },
   overrides: {
