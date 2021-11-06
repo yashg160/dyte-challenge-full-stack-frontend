@@ -11,6 +11,7 @@ import MainNavbar from '../../components/MainNavbar';
 
 import cx from 'classnames';
 import styles from './Dashboard.module.scss';
+import CreateShortLink from '../../components/CreateShortLink';
 
 const Dashboard = (props) => {
   const authData = useContext(AuthContext);
@@ -18,6 +19,7 @@ const Dashboard = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [allLinksData, setAllLinksData] = useState(null);
   const [performanceData, setPerformanceData] = useState(null);
+  const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
 
   useEffect(() => {
     fetchData().then(() => setIsLoading(false));
@@ -37,7 +39,7 @@ const Dashboard = (props) => {
   };
 
   const handleCreateLink = () => {
-    console.log('Start Create Link');
+    setIsCreateLinkModalOpen(true);
   };
 
   if (isLoading) {
@@ -85,6 +87,15 @@ const Dashboard = (props) => {
               </div>
             </div>
           </Grid>
+
+          <Grid item sm={12} md={9}>
+            <div className={styles.graphWrapper}>
+              <p className={styles.graphEmptyText}>
+                This feature is coming soon. You will be able to see realtime
+                performance analytics here.
+              </p>
+            </div>
+          </Grid>
         </Grid>
       </div>
 
@@ -114,6 +125,11 @@ const Dashboard = (props) => {
           </div>
         )}
       </div>
+
+      <CreateShortLink
+        open={isCreateLinkModalOpen}
+        onClose={() => setIsCreateLinkModalOpen(false)}
+      />
     </section>
   );
 };

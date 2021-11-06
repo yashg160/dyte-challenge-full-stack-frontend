@@ -1,0 +1,30 @@
+.headerWrapper {
+  display: flex;
+  padding: 24px 16px;
+  align-items: center;
+  background-color: #001d4a;
+  justify-content: space-between;
+
+  .heading {
+    margin: 0px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .closeButton {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+  }
+}
+
+.contentWrapper {
+  padding: 24px 16px;
+
+  .submitAreaWrapper {
+    margin-top: 64px;
+    text-align: center;
+  }
+}
