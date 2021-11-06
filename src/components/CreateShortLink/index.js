@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 
 import InputField from '../InputField';
-import { Slide, Button, Dialog, DialogContent } from '@material-ui/core';
 import { CloseOutlined } from '@material-ui/icons';
+import { Slide, Button, Dialog, DialogContent } from '@material-ui/core';
 
-import cx from 'classnames';
+import { validateData } from './dataManager';
+import { createNewShortLink } from '../../services/LinkService';
+
 import styles from './CreateLink.module.scss';
 
 const CreateShortLink = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [formLongURL, setFormLongURL] = useState('');
+  const [validationErrors, setValidationErrors] = useState([]);
 
   const handleDialogClose = () => {
     if (isLoading) {
@@ -22,8 +25,32 @@ const CreateShortLink = (props) => {
     }
   };
 
-  const handleCreateLink = () => {
-    setIsLoading(true);
+  const handleSubmit = () => {
+    // setIsLoading(true);
+    setValidationErrors([]);
+
+    const dataPayload = {
+      sourceURL: formLongURL,
+    };
+
+    const validationErrors = validateData(dataPayload);
+
+    console.log('Validation Errors is', validationErrors);
+
+    if (validationErrors.length !== 0) {
+      setValidationErrors(validationErrors);
+      return;
+    }
+
+    createNewShortLink(dataPayload)
+      .then((responseData) => {
+        if (props.onCreateComplete) {
+          props.onCreateComplete({ wow: 'works!' });
+        }
+      })
+      .catch((errorData) => {
+        console.log('Error occurred while creating link', errorData);
+      });
   };
 
   return (
@@ -85,11 +112,21 @@ const CreateShortLink = (props) => {
               color='secondary'
               variant='contained'
               disabled={isLoading}
-              onClick={() => handleCreateLink()}
+              onClick={() => handleSubmit()}
             >
               Create
             </Button>
           </div>
+
+          {validationErrors && validationErrors.length !== 0 && (
+            <div className={styles.validationErrorsWrapper}>
+              <ul>
+                {validationErrors.map((currentItem, currentIndex) => (
+                  <li key={currentIndex}>{currentItem}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

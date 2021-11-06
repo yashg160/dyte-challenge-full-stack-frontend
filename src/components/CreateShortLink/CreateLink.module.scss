@@ -1,6 +1,6 @@
 .headerWrapper {
   display: flex;
-  padding: 24px 16px;
+  padding: 20px 16px;
   align-items: center;
   background-color: #001d4a;
   justify-content: space-between;
@@ -24,7 +24,13 @@
   padding: 24px 16px;
 
   .submitAreaWrapper {
-    margin-top: 64px;
+    margin-top: 32px;
+    margin-bottom: 24px;
     text-align: center;
+  }
+  .validationErrorsWrapper {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 50);
   }
 }

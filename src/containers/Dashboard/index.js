@@ -12,13 +12,16 @@ import MainNavbar from '../../components/MainNavbar';
 import cx from 'classnames';
 import styles from './Dashboard.module.scss';
 import CreateShortLink from '../../components/CreateShortLink';
+import EditShortLink from '../../components/EditShortLink';
 
 const Dashboard = (props) => {
   const authData = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
   const [allLinksData, setAllLinksData] = useState(null);
+  const [createdLinkData, setCreatedLinkData] = useState({});
   const [performanceData, setPerformanceData] = useState(null);
+  const [isEditLinkModalOpen, setIsEditLinkModalOpen] = useState(false);
   const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
 
   useEffect(() => {
@@ -40,6 +43,18 @@ const Dashboard = (props) => {
 
   const handleCreateLink = () => {
     setIsCreateLinkModalOpen(true);
+  };
+
+  const handleCreateComplete = (linkData) => {
+    setIsCreateLinkModalOpen(false);
+
+    setCreatedLinkData(linkData);
+    setIsEditLinkModalOpen(true);
+  };
+
+  const handleEditComplete = () => {
+    setCreatedLinkData({});
+    setIsEditLinkModalOpen(false);
   };
 
   if (isLoading) {
@@ -129,6 +144,13 @@ const Dashboard = (props) => {
       <CreateShortLink
         open={isCreateLinkModalOpen}
         onClose={() => setIsCreateLinkModalOpen(false)}
+        onCreateComplete={(linkData) => handleCreateComplete(linkData)}
+      />
+
+      <EditShortLink
+        open={isEditLinkModalOpen}
+        onClose={() => setIsEditLinkModalOpen(false)}
+        onEditComplete={() => handleEditComplete()}
       />
     </section>
   );

@@ -5,6 +5,7 @@ const APIConstants = {
   DASHBOARD_ANALYTICS_DATA: '/dashboard/analytics',
   DASHBORD_LINKS: '/links',
   LINK_DATA: '/links/{{identifier}}',
+  CREATE_LINK: '/links',
 };
 
 export default APIConstants;
