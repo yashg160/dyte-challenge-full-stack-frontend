@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const axiosInstanceConfig = {
   baseURL: `${process.env.REACT_APP_API_BASE_PATH}${process.env.REACT_APP_API_BASE_MODIFIER}`,
-  timeout: 10000,
+  // timeout: 10000,
 };
 
 const axiosInstance = axios.create(axiosInstanceConfig);
@@ -21,7 +21,7 @@ axiosInstance.interceptors.response.use(
 // Instance Used By Auth Service Only
 const axiosAuthConfig = {
   baseURL: `${process.env.REACT_APP_API_BASE_PATH}${process.env.REACT_APP_API_BASE_MODIFIER}`,
-  timeout: 10000,
+  // timeout: 10000,
 };
 
 export const axiosAuthInstance = axios.create(axiosAuthConfig);

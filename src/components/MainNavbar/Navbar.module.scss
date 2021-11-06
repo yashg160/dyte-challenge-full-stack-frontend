@@ -1,0 +1,57 @@
+.navWrapper {
+  top: 0px;
+  width: 100%;
+  position: sticky;
+  background-color: #001d4a;
+
+  .navInnerWrapper {
+    display: flex;
+    padding: 12px 32px;
+    align-items: stretch;
+    justify-content: space-between;
+
+    .leftContent {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .rightContent {
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-end;
+
+      .userDetailsWrapper {
+        color: white;
+        width: 184px;
+        padding: 6px 16px;
+        border-radius: 4px;
+        align-items: center;
+        display: inline-flex;
+        background-color: #27476e;
+
+        .iconWrapper {
+          padding-right: 8px;
+        }
+
+        .detailsWrapper {
+          .name {
+            margin: 0px;
+            font-size: 14px;
+            margin-bottom: 2px;
+          }
+
+          .accountType {
+            margin: 0px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .verticalDivider {
+      margin: 0px 16px;
+      border-right: 1px solid rgba($color: #1388a2, $alpha: 1);
+    }
+  }
+}

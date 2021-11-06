@@ -1,0 +1,76 @@
+.pageWrapper {
+  .banner {
+    display: flex;
+    padding: 16px 32px;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .analyticsWrapper {
+    padding: 16px 32px 24px 32px;
+    border-bottom: 1px solid #d5d5d5;
+
+    .performanceWrapper {
+      .heading {
+        margin: 0px;
+        font-size: 20px;
+        color: #969696;
+        margin-bottom: 24px;
+      }
+
+      .perfIndicator {
+        display: grid;
+        margin-bottom: 16px;
+
+        &:last-child {
+          margin-bottom: 0px;
+        }
+
+        .iconWrapper {
+          grid-column: span 5;
+        }
+
+        .data {
+          grid-column: span 7;
+
+          .dataFigure {
+            margin: 0px;
+            font-size: 20px;
+            font-weight: 600;
+          }
+
+          .dataName {
+            margin: 0px;
+            font-weight: 600;
+            color: #969696;
+          }
+
+          .larger {
+            font-size: 28px;
+          }
+        }
+      }
+    }
+  }
+
+  .linksStatsWrapper {
+    padding: 40px 32px 24px 32px;
+
+    .linksListWrapper {
+    }
+
+    .selectedLinkStatsWrapper {
+    }
+
+    .linksEmptyWrapper {
+      display: block;
+      text-align: center;
+
+      .linksEmptyText {
+        margin: 0px;
+        color: #969696;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
