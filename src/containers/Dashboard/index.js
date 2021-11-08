@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../../context/AuthContext';
+import dayjs from 'dayjs';
 
 import {
   fetchDashboardAnalytics,
@@ -13,6 +14,7 @@ import cx from 'classnames';
 import styles from './Dashboard.module.scss';
 import CreateShortLink from '../../components/CreateShortLink';
 import EditShortLink from '../../components/EditShortLink';
+import { getProperShortLink } from '../../common/helper';
 
 const Dashboard = (props) => {
   const authData = useContext(AuthContext);
@@ -21,6 +23,7 @@ const Dashboard = (props) => {
   const [allLinksData, setAllLinksData] = useState(null);
   const [createdLinkData, setCreatedLinkData] = useState({});
   const [performanceData, setPerformanceData] = useState(null);
+  const [selectedLinkData, setSelectedLinkData] = useState(null);
   const [isEditLinkModalOpen, setIsEditLinkModalOpen] = useState(false);
   const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
 
@@ -118,12 +121,90 @@ const Dashboard = (props) => {
         {allLinksData.links && allLinksData.links.length ? (
           <Grid container justifyContent='flex-start' alignItems='stretch'>
             <Grid item sm={12} md={5} lg={4}>
-              <div className={styles.linksListWrapper}></div>
+              <div className={styles.headerWrapper}>
+                <h4 className={styles.mainHeading}>All Active Links</h4>
+                <label className={styles.description}>
+                  {allLinksData.links.length} Items
+                </label>
+              </div>
+
+              <div className={styles.linksListWrapper}>
+                {allLinksData.links.map((currentLink, currentIndex) => (
+                  <button
+                    className={cx(styles.linkWrapper, {
+                      [styles.selectedLinkWrapper]:
+                        selectedLinkData &&
+                        selectedLinkData.id === currentLink.id,
+                    })}
+                    onClick={() => setSelectedLinkData(currentLink)}
+                  >
+                    <span className={styles.date}>
+                      {dayjs(currentLink.created_at).format('MMM DD')}
+                    </span>
+                    <p className={styles.source}>{currentLink.source}</p>
+                    <a
+                      target='_blank'
+                      rel='noreferrer'
+                      href={getProperShortLink(currentLink.slug)}
+                      className={styles.shortLink}
+                    >
+                      {process.env.REACT_APP_SHORT_LINK_DOMAIN}/
+                      <b>{currentLink.slug}</b>
+                    </a>
+                  </button>
+                ))}
+              </div>
             </Grid>
 
-            <Grid item sm={12} md={7} lg={8}>
-              <div className={styles.selectedLinkStatsWrapper}></div>
-            </Grid>
+            {selectedLinkData && (
+              <Grid item sm={12} md={7} lg={8}>
+                <div className={styles.selectedLinkStatsWrapper}>
+                  <p className={styles.date}>
+                    Created{' '}
+                    {dayjs(selectedLinkData.created_at).format(
+                      'MMMM DD YYYY, hh:mm A'
+                    )}{' '}
+                    | You
+                  </p>
+
+                  <p className={styles.source}>
+                    <a
+                      target='_blank'
+                      rel='noreferrer'
+                      href={selectedLinkData.source}
+                    >
+                      {selectedLinkData.source}
+                    </a>
+                  </p>
+
+                  <div className={styles.actionsWrapper}>
+                    <a
+                      target='_blank'
+                      rel='noreferrer'
+                      className={styles.shortLink}
+                      href={getProperShortLink(selectedLinkData.slug)}
+                    >
+                      {process.env.REACT_APP_SHORT_LINK_DOMAIN}/
+                      <b>{selectedLinkData.slug}</b>
+                    </a>
+
+                    {/*    <Button size='small' color='secondary' variant='outlined'>
+                      COPY
+                    </Button> */}
+
+                    <Button size='small' color='secondary' variant='outlined'>
+                      EDIT
+                    </Button>
+                  </div>
+                  <div className={styles.divider}></div>
+
+                  <h5 className={styles.totalClicksCount}>
+                    {selectedLinkData.clicks ?? 0}
+                  </h5>
+                  <span className={styles.dataName}>Total Clicks</span>
+                </div>
+              </Grid>
+            )}
           </Grid>
         ) : (
           <div className={styles.linksEmptyWrapper}>
@@ -149,6 +230,7 @@ const Dashboard = (props) => {
 
       <EditShortLink
         open={isEditLinkModalOpen}
+        linkData={createdLinkData}
         onClose={() => setIsEditLinkModalOpen(false)}
         onEditComplete={() => handleEditComplete()}
       />

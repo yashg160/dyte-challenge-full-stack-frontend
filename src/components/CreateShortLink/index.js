@@ -45,7 +45,7 @@ const CreateShortLink = (props) => {
     createNewShortLink(dataPayload)
       .then((responseData) => {
         if (props.onCreateComplete) {
-          props.onCreateComplete({ wow: 'works!' });
+          props.onCreateComplete(responseData.data);
         }
       })
       .catch((errorData) => {

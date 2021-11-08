@@ -66,12 +66,138 @@
   }
 
   .linksStatsWrapper {
-    padding: 40px 32px 24px 32px;
+    padding: 0px 0px 24px 0px;
+
+    .headerWrapper {
+      display: flex;
+      padding: 16px 24px;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 1px solid #ededed;
+
+      .mainHeading {
+        margin: 0px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #2b2b2b;
+        font-family: Inter;
+      }
+
+      .description {
+        color: #8a8a8a;
+        font-size: 12px;
+        font-weight: 300;
+        font-family: Inter;
+      }
+    }
 
     .linksListWrapper {
+      .linkWrapper {
+        width: 100%;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        text-align: left;
+        padding: 10px 24px;
+        background-color: transparent;
+        transition: all 0.1s ease-in-out;
+
+        &:hover {
+          background-color: rgb(248, 248, 248);
+        }
+
+        .date {
+          margin: 0px;
+          font-family: Inter;
+          font-size: 12px;
+          color: #8a8a8a;
+          text-transform: uppercase;
+        }
+
+        .source {
+          margin: 0px;
+          font-size: 18px;
+          font-weight: 300;
+          color: #2b2b2b;
+          font-family: Inter;
+          margin-bottom: 8px;
+        }
+
+        .shortLink {
+          color: #e09d00;
+          text-transform: none;
+        }
+      }
+
+      .selectedLinkWrapper {
+        background-color: #ededed;
+        &:hover {
+          background-color: #ededed;
+        }
+      }
     }
 
     .selectedLinkStatsWrapper {
+      height: 100%;
+      padding: 16px 24px;
+
+      .date {
+        margin: 0px;
+        font-size: 12px;
+        color: #8a8a8a;
+        font-family: Inter;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+      }
+
+      .source {
+        margin: 0px;
+        font-size: 24px;
+        font-weight: 300;
+        color: #2b2b2b;
+        font-family: Inter;
+        margin-bottom: 16px;
+
+        a {
+          color: #2b2b2b;
+          text-transform: none;
+        }
+      }
+
+      .actionsWrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+        justify-content: flex-start;
+
+        .shortLink {
+          color: #e09d00;
+          margin-right: 20px;
+          text-transform: none;
+        }
+
+        button {
+          margin-right: 12px;
+        }
+
+        &:last-child {
+          margin-right: 0px;
+        }
+      }
+
+      .totalClicksCount {
+        margin: 0px;
+        font-size: 24px;
+        color: #2b2b2b;
+        font-weight: 500;
+        font-family: Inter;
+      }
+
+      .dataName {
+        color: #8a8a8a;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
     }
 
     .linksEmptyWrapper {
@@ -85,4 +211,11 @@
       }
     }
   }
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  margin-bottom: 24px;
+  background-color: #ededed;
 }
