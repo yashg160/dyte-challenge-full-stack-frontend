@@ -33,12 +33,10 @@ const CreateShortLink = (props) => {
       sourceURL: formLongURL,
     };
 
-    const validationErrors = validateData(dataPayload);
+    const errors = validateData(dataPayload);
 
-    console.log('Validation Errors is', validationErrors);
-
-    if (validationErrors.length !== 0) {
-      setValidationErrors(validationErrors);
+    if (errors.length !== 0) {
+      setValidationErrors(errors);
       return;
     }
 

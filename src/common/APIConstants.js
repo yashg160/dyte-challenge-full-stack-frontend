@@ -6,6 +6,7 @@ const APIConstants = {
   DASHBORD_LINKS: '/links',
   LINK_DATA: '/links/{{identifier}}',
   CREATE_LINK: '/links',
+  UPDATE_LINK: '/links/{{identifier}}',
 };
 
 export default APIConstants;

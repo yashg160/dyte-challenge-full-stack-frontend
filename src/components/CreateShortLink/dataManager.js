@@ -1,6 +1,4 @@
 export const validateData = (state) => {
-  console.log('Arg Validation Data is', state);
-
   let errorsArr = [];
 
   if (state && Object.keys(state).length !== 0) {

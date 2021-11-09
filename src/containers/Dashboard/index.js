@@ -21,8 +21,8 @@ const Dashboard = (props) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [allLinksData, setAllLinksData] = useState(null);
-  const [createdLinkData, setCreatedLinkData] = useState({});
   const [performanceData, setPerformanceData] = useState(null);
+  const [editingLinkData, setEditingLinkData] = useState(null);
   const [selectedLinkData, setSelectedLinkData] = useState(null);
   const [isEditLinkModalOpen, setIsEditLinkModalOpen] = useState(false);
   const [isCreateLinkModalOpen, setIsCreateLinkModalOpen] = useState(false);
@@ -40,7 +40,7 @@ const Dashboard = (props) => {
         setAllLinksData(responseData2.data);
       })
       .catch((errorData) => {
-        console.log('Error While Fetchin Data', errorData);
+        console.log('Error While Fetching Data', errorData);
       });
   };
 
@@ -48,16 +48,30 @@ const Dashboard = (props) => {
     setIsCreateLinkModalOpen(true);
   };
 
+  const handleEditLink = (linkData) => {
+    setEditingLinkData(linkData);
+    setIsEditLinkModalOpen(true);
+  };
+
   const handleCreateComplete = (linkData) => {
     setIsCreateLinkModalOpen(false);
 
-    setCreatedLinkData(linkData);
+    setEditingLinkData(linkData);
     setIsEditLinkModalOpen(true);
   };
 
   const handleEditComplete = () => {
-    setCreatedLinkData({});
+    setEditingLinkData(null);
     setIsEditLinkModalOpen(false);
+
+    // Refresh Data from API
+    fetchUserLinks()
+      .then((responseData) => {
+        setAllLinksData(responseData.data);
+      })
+      .catch((errorData) => {
+        console.log('Error Fetching User Links Data', errorData);
+      });
   };
 
   if (isLoading) {
@@ -192,7 +206,12 @@ const Dashboard = (props) => {
                       COPY
                     </Button> */}
 
-                    <Button size='small' color='secondary' variant='outlined'>
+                    <Button
+                      size='small'
+                      color='secondary'
+                      variant='outlined'
+                      onClick={() => handleEditLink(selectedLinkData)}
+                    >
                       EDIT
                     </Button>
                   </div>
@@ -230,7 +249,7 @@ const Dashboard = (props) => {
 
       <EditShortLink
         open={isEditLinkModalOpen}
-        linkData={createdLinkData}
+        linkData={editingLinkData}
         onClose={() => setIsEditLinkModalOpen(false)}
         onEditComplete={() => handleEditComplete()}
       />
