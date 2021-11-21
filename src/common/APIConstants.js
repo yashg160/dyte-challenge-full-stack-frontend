@@ -4,7 +4,7 @@ const APIConstants = {
   USER_SIGN_UP: '/auth/register',
   DASHBOARD_ANALYTICS_DATA: '/dashboard/analytics',
   DASHBORD_LINKS: '/links',
-  LINK_DATA: '/links/{{identifier}}',
+  REDIRECT: '/redirect',
   CREATE_LINK: '/links',
   UPDATE_LINK: '/links/{{identifier}}',
 };

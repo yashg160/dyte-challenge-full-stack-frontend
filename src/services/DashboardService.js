@@ -8,11 +8,3 @@ export const fetchDashboardAnalytics = () => {
 export const fetchUserLinks = () => {
   return axiosIntance.get(APIConstants.DASHBORD_LINKS);
 };
-
-export const fetchLinkData = (dataPayload) => {
-  const API_URL = APIConstants.LINK_DATA.replace(
-    '{{identifier}}',
-    dataPayload.id
-  );
-  return axiosIntance.get(API_URL);
-};
